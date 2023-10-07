@@ -3,6 +3,7 @@
     --secondary-bg-color: #222;
     --primary-button-color: #0078d4;
     --primary-red: #d0342c;
+    --primary-green: #198754;
     --primary-button-color-hover: #0056b3;
     --primary-border-radius: 7px;
     --primary-input-height: 40px;
@@ -94,6 +95,10 @@ section {
     align-items: center;
 }
 
+.success-alert {
+    background-color: var(--primary-green) !important;
+}
+
 .login-register-switch {
     color: #fff;
     font-size: small;
@@ -102,6 +107,7 @@ section {
 
 .link {
     color: var(--primary-button-color);
+    cursor: pointer;
 }
 
 .logo {
@@ -110,4 +116,9 @@ section {
     justify-content: space-around;
     width: 120px;
     text-align: center;
+}
+
+input:focus {
+    outline: #fff;
+    border-color: #fff;
 }

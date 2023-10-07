@@ -1,13 +1,20 @@
-<div class="login-container">
-    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="alert">Username and Password are required</div>
+<ng-container>
+    <header-bar/>
+    <div class="login-container">
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="alertMessage.length!=0" class="alert" [class.success-alert]="isSuccessMessage">{{alertMessage}}</div>
 
-        <div class="login-header">
-            <h2>Log In To Your Account</h2>
-        </div>
-        <input formControlName="username" type="text" class="form-control cred-input" id="username" placeholder="username">
-        <input formControlName="password" type="password" class="form-control cred-input" id="password" placeholder="password">
-        <button type="submit" [disabled]="loginForm.invalid" class="login-button">Log In</button>
-        <div class="login-register-switch">Do not have an account?<a class="link"> Register</a></div>
-    </form>
-</div>
+            <div class="login-header">
+                <h2 *ngIf="!isRegistering">Log In To Your Account</h2>
+                <h2 *ngIf="isRegistering">Register Your Account</h2>
+
+            </div>
+            <input formControlName="username" type="text" class="form-control cred-input" id="username" placeholder="username">
+            <input formControlName="password" type="password" class="form-control cred-input" id="password" placeholder="password">
+            <button type="submit" [disabled]="loginForm.invalid" class="login-button">{{isRegistering?'Register':'Log In'}}</button>
+            <div *ngIf="!isRegistering" class="login-register-switch">Do not have an account?<a (click)="switchRegister()" class="link"> Register</a></div>
+            <div *ngIf="isRegistering" class="login-register-switch">Already have an account?<a (click)="switchRegister()" class="link"> Login</a></div>
+
+        </form>
+    </div>
+</ng-container>

@@ -1,0 +1,32 @@
+.nav-bar {
+    display: flex;
+    background-color: var(--primary-bg-color);
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #fff;
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: var(--primary-box-shadow);
+}
+
+.search-bar {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    font-size: small;
+    color: #fff;
+    height: var(--primary-input-height);
+    width: 60%;
+    padding: calc(var(--primary-padding)/2);
+    height: 30px;
+    border-radius: var(--primary-border-radius);
+    box-sizing: border-box;
+}
+
+.search-bar::placeholder {
+    text-align: center;
+}

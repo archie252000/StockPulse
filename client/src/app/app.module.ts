@@ -7,12 +7,16 @@ import { HeaderBarComponent } from './components/header-bar/header-bar.component
 import { LoginContainerComponent } from './components/login-container/login-container.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderBarComponent,
-    LoginContainerComponent
+    LoginContainerComponent,
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
