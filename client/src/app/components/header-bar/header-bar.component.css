@@ -1,0 +1,15 @@
+.header-bar {
+    background-color: var(--primary-bg-color);
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #fff;
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--primary-box-shadow);
+}

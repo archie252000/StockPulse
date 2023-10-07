@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-bg-color: #333;
+    --secondary-bg-color: #222;
+    --primary-button-color: #0078d4;
+    --primary-red: #d0342c;
+    --primary-button-color-hover: #0056b3;
+    --primary-border-radius: 7px;
+    --primary-input-height: 40px;
+    --primary-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+    --primary-margin: 8px;
+    --primary-padding: 10px;
+    --primary-gray: rgb(163, 163, 163);
+    --cred-field-width: 300px;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-bg-color);
+}
+
+.login-header {
+    color: #fff;
+    margin: var(--primary-margin);
+}
+
+.login-container {
+    padding: var(--primary-padding);
+    height: 350px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-bg-color);
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--primary-border-radius);
+    box-shadow: var(--primary-box-shadow);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 300px;
+}
+
+.cred-input {
+    height: var(--primary-input-height);
+    border-radius: var(--primary-border-radius);
+    border: 1px solid var(--primary-gray);
+    background-color: var(--primary-bg-color);
+    margin: var(--primary-margin);
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+    width: var(--cred-field-width);
+    color: var(--primary-gray);
+}
+
+.login-button {
+    height: var(--primary-input-height);
+    width: var(--cred-field-width);
+    background-color: var(--primary-button-color);
+    border-radius: var(--primary-border-radius);
+    box-sizing: border-box;
+    border: none;
+    color: #fff;
+}
+
+.login-button:hover {
+    background-color: var(--primary-button-color-hover);
+    border: 1px solid var(--primary-button-color-hover);
+}
+
+.alert {
+    background-color: var(--primary-red);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: var(--primary-input-height);
+    color: #fff;
+    border-radius: var(--primary-border-radius);
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-register-switch {
+    color: #fff;
+    font-size: small;
+    margin: var(--primary-margin)
+}
+
+.link {
+    color: var(--primary-button-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 120px;
+    text-align: center;
+}
