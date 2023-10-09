@@ -1,7 +1,10 @@
 const express = require('express');
 const auth = require('../middleware/auth');
 
-const { subscibeToStock } = require('../controllers/stockController');
+const {
+    subscibeToStock,
+    searchStocks
+} = require('../controllers/stockController');
 
 const router = express.Router();
 
@@ -9,5 +12,10 @@ const router = express.Router();
 // @desc     Subscribe to stock
 // @access   Private
 router.post('/subscribe', auth, subscibeToStock);
+
+// @route    GET api/stocks/search
+// @desc     Subscribe to stock
+// @access   Public
+router.get('/search', searchStocks);
 
 module.exports = router;

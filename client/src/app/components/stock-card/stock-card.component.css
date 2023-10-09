@@ -1,0 +1,27 @@
+.stock-card-container {
+    border-radius: var(--primary-border-radius);
+    background-color: var(--primary-bg-color);
+    padding: var(--primary-padding);
+    color: #fff;
+    box-shadow: var(--primary-box-shadow);
+}
+
+.stock-card-symbol {
+    font-weight: bold;
+}
+
+.stock-card-symbol {
+    margin: var(--primary-margin);
+}
+
+.stick-card-company-name {
+    margin: var(--primary-margin);
+    color: var(--primary-button-color);
+}
+
+.stock-card-target-price-container {
+    margin: var(--primary-margin);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

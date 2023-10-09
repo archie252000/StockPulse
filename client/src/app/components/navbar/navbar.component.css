@@ -30,3 +30,54 @@
 .search-bar::placeholder {
     text-align: center;
 }
+
+ul {
+    width: 60vw;
+    position: absolute;
+    top: 70px;
+    right: 20vw;
+    background-color: var(--primary-bg-color);
+    border-radius: var(--primary-border-radius);
+    box-shadow: var(--primary-box-shadow);
+    list-style: none;
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+li {
+    font-size: medium;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    margin: var(--primary-margin);
+    padding: var(--primary-padding);
+    cursor: pointer;
+}
+
+.search-result-symbol {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+    font-weight: bold;
+}
+
+.search-result-company-name {
+    flex: 1;
+    display: flex;
+    font-weight: 100;
+}
+
+.search-result-price {
+    font-weight: 100;
+}
+
+.search-overlay {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}

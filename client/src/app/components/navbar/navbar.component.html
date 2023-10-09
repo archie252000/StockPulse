@@ -1,11 +1,35 @@
-<nav class="nav-bar">
-    <div class="logo">
-        <i class="fa-solid fa-bolt" style="color: #fff;"></i>
-        <h3>StockPulse</h3>
-    </div>
-    <input type="text" class="search-bar" placeholder="Search">
-    <div class="logout">
-        Log Out
-        <i class="fa-solid fa-right-from-bracket"></i>
-    </div>
-</nav>
+<ng-container>
+    <nav class="nav-bar">
+        <div class="logo">
+            <i class="fa-solid fa-bolt" style="color: #fff;"></i>
+            <h3>StockPulse</h3>
+        </div>
+        <input #searchQuery (input)="onInputChange()" type="text" class="search-bar" placeholder="Search">
+        <div class="logout">
+            Log Out
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+    </nav>
+    <div *ngIf="showOverlay" class="search-overlay"></div>
+    <ul *ngIf="showResults">
+        <li *ngFor="let item of searchResults">
+            <div class="search-result-company-name">
+                {{item['2. name']}}
+            </div>
+            <div class="search-result-symbol">
+                {{item['1. symbol']}}
+            </div>
+
+        </li>
+        <li>
+            <div class="search-result-company-name">
+                Sample Stock Company
+            </div>
+            <div class="search-result-symbol">
+                SamSYM
+            </div>
+
+        </li>
+    </ul>
+
+</ng-container>

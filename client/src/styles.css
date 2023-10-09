@@ -122,3 +122,7 @@ input:focus {
     outline: #fff;
     border-color: #fff;
 }
+
+.price-tag {
+    color: var(--primary-green)
+}
