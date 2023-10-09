@@ -3,7 +3,8 @@ const auth = require('../middleware/auth');
 
 const {
     subscibeToStock,
-    searchStocks
+    searchStocks,
+    subscribedStocks
 } = require('../controllers/stockController');
 
 const router = express.Router();
@@ -17,5 +18,10 @@ router.post('/subscribe', auth, subscibeToStock);
 // @desc     Subscribe to stock
 // @access   Public
 router.get('/search', searchStocks);
+
+// @route    GET api/stocks/subscribed
+// @desc     Get all subscribed stocks
+// @access   Public
+router.get('/subscribed', auth, subscribedStocks);
 
 module.exports = router;

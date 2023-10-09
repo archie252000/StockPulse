@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { LoginService } from '../../services/login.service'
@@ -17,7 +18,7 @@ export class LoginContainerComponent {
   alertMessage: String;
   isSuccessMessage: Boolean;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private registerService: RegisterService) {
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private registerService: RegisterService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -47,13 +48,14 @@ export class LoginContainerComponent {
               this.isSuccessMessage = false;
               this.alertMessage = err.message;
             });
+
+      this.router.navigate(['/dashboard']);
     } else {
 
       this.registerService.registerUser(
         this.loginForm.value.username,
         this.loginForm.value.password).then(
           (response) => {
-            localStorage.setItem('token', response.data.token);
             this.isSuccessMessage = true;
             this.alertMessage = 'Registration Successful!'
           }).catch(

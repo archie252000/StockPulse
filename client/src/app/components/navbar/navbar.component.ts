@@ -14,13 +14,16 @@ export class NavbarComponent {
   showResults: Boolean
   showOverlay: Boolean
   showStockModal: Boolean
+  selectedStockSymbol: String
+  selectedStockCompany: String
 
   constructor(private searchService: SearchService) {
     this.searchResults = [];
     this.showOverlay = false;
     this.showResults = false;
     this.showStockModal = false;
-
+    this.selectedStockSymbol = "";
+    this.selectedStockCompany = "";
   }
 
 
@@ -43,6 +46,20 @@ export class NavbarComponent {
       this.showOverlay = false;
       this.showResults = false;
     }
+
+  }
+
+  onItemClick(symbol: String, companyName: String): void {
+    this.showStockModal = true;
+    this.showResults = false;
+    this.showOverlay = true;
+    this.selectedStockSymbol = symbol;
+    this.selectedStockCompany = companyName;
+  }
+
+  closeModal(): void {
+    this.showStockModal = false;
+    this.showResults = true;
 
   }
 

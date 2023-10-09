@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'stock-card',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./stock-card.component.css']
 })
 export class StockCardComponent {
+  @Input() symbol: String
+  @Input() targetPrice: Number
+
+  constructor() {
+    this.symbol = '';
+    this.targetPrice = 0.0;
+  }
 
 }

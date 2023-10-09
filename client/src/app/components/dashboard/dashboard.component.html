@@ -1,6 +1,10 @@
 <ng-container>
     <navbar/>
     <div class="dashboard-container">
-        <stock-card/>
+        <h1>Your Subscribed Stocks</h1>
+        <div class="card-container">
+            <stock-card *ngFor="let stock of stocks" [symbol]="stock['symbol']" [targetPrice]="stock['targetPrice']" />
+        </div>
+
     </div>
 </ng-container>

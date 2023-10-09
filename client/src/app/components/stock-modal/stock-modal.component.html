@@ -1,0 +1,20 @@
+<div class="stock-card-container">
+    <div class="stock-modal-header-wrapper">
+        <div class="stock-card-symbol">
+            {{symbol}}
+        </div>
+        <div class="modal-close" (click)="onCloseModal()">
+            <i class="fa-solid fa-xmark" style="color: #fff;"></i>
+        </div>
+    </div>
+    <div class="stick-card-company-name">
+        {{companyName}}
+    </div>
+    <div class="stock-card-target-price-container">
+        <div class="stock-card-target-price-inner-container">
+            <i class="fa-solid fa-bullseye fa-xs" style="color: #fff;"></i>
+        </div>
+        <input type="number" class="target-price-input" placeholder="Enter Target Price" #targetPrice>
+        <button class="set-alert-button" (click)="onSetAlert()">Set Alert</button>
+    </div>
+</div>

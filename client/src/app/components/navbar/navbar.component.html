@@ -4,15 +4,16 @@
             <i class="fa-solid fa-bolt" style="color: #fff;"></i>
             <h3>StockPulse</h3>
         </div>
-        <input #searchQuery (input)="onInputChange()" type="text" class="search-bar" placeholder="Search">
+        <input #searchQuery (input)="onInputChange()" [disabled]="showStockModal" type="text" class="search-bar" placeholder="Search">
         <div class="logout">
             Log Out
             <i class="fa-solid fa-right-from-bracket"></i>
         </div>
     </nav>
     <div *ngIf="showOverlay" class="search-overlay"></div>
+    <stock-modal *ngIf="showStockModal" [symbol]="selectedStockSymbol" [companyName]="selectedStockCompany" (closeModal)="closeModal()"></stock-modal>
     <ul *ngIf="showResults">
-        <li *ngFor="let item of searchResults">
+        <li *ngFor="let item of searchResults" (click)="onItemClick(item['1. symbol'], item['2. name'])">
             <div class="search-result-company-name">
                 {{item['2. name']}}
             </div>

@@ -1,0 +1,73 @@
+.stock-card-container {
+    border-radius: var(--primary-border-radius);
+    background-color: var(--primary-bg-color);
+    padding: var(--primary-padding);
+    color: #fff;
+    box-shadow: var(--primary-box-shadow);
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.stock-card-symbol {
+    font-weight: bold;
+}
+
+.stock-card-symbol {
+    margin: var(--primary-margin);
+}
+
+.stick-card-company-name {
+    margin: var(--primary-margin);
+    color: var(--primary-button-color);
+}
+
+.stock-card-target-price-container {
+    margin: var(--primary-margin);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.target-price-input {
+    border: none;
+    color: #fff;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--primary-border-radius);
+    height: 25px;
+    margin: var(--primary-margin);
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+}
+
+.set-alert-button {
+    border-radius: var(--primary-border-radius);
+    border: none;
+    height: 25px;
+    border-radius: var(--primary-border-radius);
+    height: 25px;
+    margin: var(--primary-margin);
+    padding: var(--primary-padding);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--primary-red);
+}
+
+.stock-modal-header-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.modal-close {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}

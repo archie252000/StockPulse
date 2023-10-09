@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StockCardComponent } from './components/stock-card/stock-card.component';
+import { StockModalComponent } from './components/stock-modal/stock-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StockCardComponent } from './components/stock-card/stock-card.component
     LoginContainerComponent,
     DashboardComponent,
     NavbarComponent,
-    StockCardComponent
+    StockCardComponent,
+    StockModalComponent
   ],
   imports: [
     BrowserModule,

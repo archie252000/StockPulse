@@ -4,6 +4,7 @@
     padding: var(--primary-padding);
     color: #fff;
     box-shadow: var(--primary-box-shadow);
+    margin: var(--primary-margin);
 }
 
 .stock-card-symbol {
