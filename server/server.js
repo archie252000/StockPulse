@@ -1,7 +1,7 @@
 const http = require('http');
 const app = require('./app');
 const db = require("./models")
-
+const temp = require('../client/dist')
 const port = process.env.PORT || 3000;
 
 app.set('port', port);
@@ -11,6 +11,16 @@ const server = http.createServer(app);
 db.sequelize.sync().then((req) => {
     server.listen(port, () => { console.log(`Server is running on port ${port}`); })
 });
+
+//  Deployment
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+
+}
+
 
 
 server.on('error', (error) => {
