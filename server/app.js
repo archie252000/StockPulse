@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
 // Middleware
 app.use(cors());
@@ -24,5 +25,15 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Internal Server Error' });
 });
+
+//  Deployment
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.resolve(__dirname, '../client/dist/client')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client/dist/client/index.html'));
+    });
+
+}
+
 
 module.exports = app;

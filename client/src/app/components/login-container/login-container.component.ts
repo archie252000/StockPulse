@@ -43,13 +43,15 @@ export class LoginContainerComponent {
       this.loginService.loginUser(
         this.loginForm.value.username,
         this.loginForm.value.password).then(
-          (response) => localStorage.setItem('token', response.data.token)).catch(
+          (response) => {
+            localStorage.setItem('token', response.data.token)
+            this.router.navigate(['/dashboard']);
+          }).catch(
             (err) => {
               this.isSuccessMessage = false;
               this.alertMessage = err.message;
             });
 
-      this.router.navigate(['/dashboard']);
     } else {
 
       this.registerService.registerUser(
