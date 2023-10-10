@@ -1,9 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const { User } = require('../models')
 
-const jwtSecretKey = config.get('jwtSecretKey');
+const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
 // utils
 const generateToken = (userId) => {

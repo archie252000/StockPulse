@@ -1,6 +1,5 @@
 const { UserSubscribedStocks } = require('../models');
 const axios = require('axios');
-const config = require('config');
 
 // DB interaction utils
 const subscibeStockToUser = async(symbol, targetPrice, UserId) => {
@@ -54,9 +53,8 @@ const subscibeToStock = async(req, res) => {
 const searchStocks = async(req, res) => {
 
     try {
-        const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${req.query.keywords}&apikey=${config.get('alphavantageKey')}`;
+        const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${req.query.keywords}&apikey=${process.env.ALPHAVNTAGE_KEY}`;
         const searchResults = await axios.get(url);
-        console.log(searchResults.data);
         res.status(200).json({ matches: searchResults.data.bestMatches });
 
     } catch (err) {

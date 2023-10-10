@@ -13,6 +13,7 @@ db.sequelize.sync().then((req) => {
 });
 
 
+
 server.on('error', (error) => {
     if (error.syscall !== 'listen') {
         throw error;
