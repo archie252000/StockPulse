@@ -38,6 +38,7 @@ export class LoginContainerComponent {
   }
 
   onSubmit(): void {
+
     if (!this.isRegistering) {
 
       this.loginService.loginUser(
@@ -49,7 +50,7 @@ export class LoginContainerComponent {
           }).catch(
             (err) => {
               this.isSuccessMessage = false;
-              this.alertMessage = err.message;
+              this.alertMessage = err.response.data.message;
             });
 
     } else {
@@ -63,7 +64,6 @@ export class LoginContainerComponent {
           }).catch(
             (err) => {
               this.isSuccessMessage = false;
-              console.log(err)
               this.alertMessage = err.response.data.message;
             });
     }
