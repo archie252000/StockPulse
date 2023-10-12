@@ -14,7 +14,13 @@
     box-shadow: var(--primary-box-shadow);
 }
 
+.search-bar-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .search-bar {
+    min-width: 50vw;
     background-color: var(--secondary-bg-color);
     border: none;
     font-size: small;
@@ -25,6 +31,24 @@
     height: 30px;
     border-radius: var(--primary-border-radius);
     box-sizing: border-box;
+}
+
+.search-icon-wrapper {
+    background-color: var(--primary-button-color);
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--primary-border-radius);
+    margin-left: var(--primary-margin);
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon-wrapper:hover {
+    background-color: var(--primary-button-color-hover);
 }
 
 .search-bar::placeholder {
@@ -97,4 +121,75 @@ li {
     border: none;
     font-weight: bold;
     width: 90px;
+}
+
+.logout-responsive {
+    display: none;
+}
+
+.logout-responsive-spacer {
+    display: none;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .logo-container {
+        display: flex;
+        width: 100vw;
+        flex-direction: row;
+        margin-bottom: calc(2*var(--primary-margin));
+        margin-top: calc(var(--primary-margin));
+        align-items: center;
+    }
+    .logo-wrapper {
+        display: flex;
+        flex: 5;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-bar {
+        flex-direction: column;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+    }
+    .logout {
+        display: none;
+    }
+    .logout-responsive {
+        background-color: #fff;
+        border-radius: var(--primary-border-radius);
+        color: var(--primary-bg-color);
+        height: 25px;
+        width: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: var(--primary-margin);
+        padding: var(--primary-padding);
+    }
+    .logout-responsive-spacer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logout-responsive-pesudo {
+        height: 25px;
+        width: 25px;
+        background-color: var(--primary-bg-color);
+    }
+    .search-bar-wrapper {
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+    }
+    .search-bar {
+        min-width: 80vw;
+    }
 }

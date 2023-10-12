@@ -1,10 +1,29 @@
 <ng-container>
     <nav class="nav-bar">
-        <div class="logo">
-            <i class="fa-solid fa-bolt" style="color: #fff;"></i>
-            <h3>StockPulse</h3>
+        <div class="logo-container">
+            <div class="logout-responsive-spacer">
+                <div class="logout-responsive-pesudo">
+
+                </div>
+            </div>
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <i class="fa-solid fa-bolt" style="color: #fff;"></i>
+                    <h3>StockPulse</h3>
+                </div>
+            </div>
+            <div class="logout-responsive-spacer">
+                <div class="logout-responsive">
+                    <i class="fa-solid fa-xs fa-right-from-bracket"></i>
+                </div>
+            </div>
         </div>
-        <input #searchQuery (input)="onInputChange()" [disabled]="showStockModal" type="text" class="search-bar" placeholder="Search">
+        <div class="search-bar-wrapper">
+            <input #searchQuery [disabled]="showStockModal" type="text" (input)="onInputChange()" class="search-bar" placeholder="Search">
+            <div class="search-icon-wrapper" (click)="onSearchClick()">
+                <i class="fa-solid fa-xs fa-magnifying-glass" style="color: #fff;"></i>
+            </div>
+        </div>
         <div class="logout">
             Log Out
             <i class="fa-solid fa-right-from-bracket"></i>

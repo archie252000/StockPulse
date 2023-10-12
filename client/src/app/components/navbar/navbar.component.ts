@@ -26,26 +26,40 @@ export class NavbarComponent {
     this.selectedStockCompany = "";
   }
 
-
   onInputChange(): void {
-
     const value = this.searchQuery.nativeElement.value;
-
-    if (value != '') {
-      this.searchService.search(value).then((response) => {
-        this.searchResults = response.data.matches;
-      }).catch((err) => { console.log(err.message) });
-    }
-
-    if (this.searchResults.length != 0) {
-      this.showOverlay = true;
-      this.showResults = true;
-    }
-
     if (value == '') {
+      this.searchResults = [];
       this.showOverlay = false;
       this.showResults = false;
     }
+  }
+
+
+  onSearchClick(): void {
+
+    const value = this.searchQuery.nativeElement.value;
+
+    this.searchService.search(value)
+      .then((response) => {
+        this.searchResults = response.data.matches;
+        if (!this.searchResults)
+          this.searchResults = [];
+        if (this.searchResults.length > 0) {
+          this.showOverlay = true;
+          this.showResults = true;
+        } else {
+
+          this.showOverlay = false;
+          this.showResults = false;
+        }
+      })
+      .catch((err) => {
+        console.error("Error: " + err.message);
+        this.showOverlay = false;
+        this.showResults = false;
+      });
+
 
   }
 
