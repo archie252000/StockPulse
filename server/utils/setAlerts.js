@@ -1,4 +1,4 @@
-const cron = require('cron')
+const cron = require('node-cron')
 const axios = require('axios');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
