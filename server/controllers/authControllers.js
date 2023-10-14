@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const {
     User,
-    UserNotificaionTokens
+    UserNotificationTokens
 } = require('../models')
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -39,7 +39,7 @@ const checkUsername = async(username) => {
 
 
 const addNotificationToken = async(UserId, notificationToken) => {
-    await UserNotificaionTokens.create({
+    await UserNotificationTokens.create({
         UserId,
         notificationToken
     })

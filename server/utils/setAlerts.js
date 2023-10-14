@@ -1,29 +1,114 @@
-const express = require('express');
-const cron = require('node-cron');
+const cron = require('cron')
 const axios = require('axios');
-const config = require('config');
-const { UserSubscribedModels } = require('../models')
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
+const { UserSubscribedStocks, Users, UserNotificationToken } = require('../models');
+const FCM = require('fcm-node');
+const serverKey = process.env.FIREBASE_SERVER_KEY;
+const fcm = new FCM(serverKey);
 
+const threshold = 5;
 
-const generateUrl = (symbol) => {
-    return `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${config.get('alphavantageKey')}`;
+async function fetchDataFromAlphaVantage(symbol) {
+    const apiKey = 'your_alpha_vantage_api_key';
+    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+        const data = response.data['Global Quote'];
+        const price = parseFloat(data['05. price']);
+        return price;
+    } catch (error) {
+        console.error(`Error fetching data for symbol ${symbol}: ${error.message}`);
+        return null;
+    }
 }
 
-const setAlerts = () => {
-    cron.schedule('*/5 * * * *', async() => {
-        try {
+async function getUserNotificationToken(userId) {
+    try {
+        const userToken = await UserNotificationToken.findOne({
+            where: { UserId: userId },
+        });
+        return userToken ? userToken.notificationToken : null;
+    } catch (error) {
+        console.error('Error fetching user notification token:', error);
+        return null;
+    }
+}
 
-
-            const response = await axios.get(generateUrl);
-
-            // Process the response data as needed
-            console.log('HTTP GET response:', response.data);
-        } catch (error) {
-            // Handle errors
-            console.error('Error making HTTP request:', error.message);
+function sendFCMMessage(message, userId) {
+    fcm.send(message, (err, response) => {
+        if (err) {
+            console.log(`Failed to send FCM message to user ${userId}:`, err);
+            console.log(`Response:`, response);
+        } else {
+            console.log(`FCM message sent to user ${userId}. Response:`, response);
         }
     });
 }
 
-module.exports = { setAlerts };
+
+const setAlerts = () => {
+    console.log("called");
+    cron.schedule('0 */3 * * *', async() => {
+        console.log('Cron job started...');
+
+        try {
+            const uniqueSymbols = await UserSubscribedStocks.findAll({
+                attributes: [
+                    [Sequelize.fn('DISTINCT', Sequelize.col('symbol')), 'symbol'],
+                ],
+            });
+
+            for (const symbol of uniqueSymbols) {
+                const currentPrice = await fetchDataFromAlphaVantage(symbol.symbol);
+
+                if (currentPrice !== null) {
+                    const subscriptions = await UserSubscribedStocks.findAll({
+                        where: {
+                            symbol: symbol.symbol,
+                            targetPrice: {
+                                [Op.between]: [currentPrice, currentPrice + threshold],
+                            },
+                        },
+                        include: Users,
+                    });
+
+                    for (const subscription of subscriptions) {
+                        const userId = subscription.User.id;
+                        const userToken = await getUserNotificationToken(userId);
+
+                        if (userToken) {
+                            const message = {
+                                to: userToken.notificationToken,
+                                notification: {
+                                    title: 'NotificationTestAPP',
+                                    body: 'Message from Node.js app',
+                                },
+                                data: {
+                                    title: 'Your custom data title',
+                                    body: JSON.stringify({
+                                        name: 'okg ooggle ogrlrl',
+                                        product_id: '123',
+                                        final_price: '0.00035',
+                                    }),
+                                },
+                            };
+
+                            sendFCMMessage(message, userId);
+                        }
+                    }
+                }
+            }
+
+            console.log('Cron job completed.');
+        } catch (error) {
+            console.error('Error in cron job:', error);
+        }
+    });
+}
+
+module.exports = {
+    setAlerts
+}

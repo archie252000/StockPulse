@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             notificationToken: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true
             }
         }, {
             timestamps: false

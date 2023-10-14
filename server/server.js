@@ -1,6 +1,8 @@
 const http = require('http');
 const app = require('./app');
-const db = require("./models")
+const db = require("./models");
+
+const { setAlerts } = require('./utils/setAlerts');
 
 const port = process.env.PORT || 3000;
 
@@ -9,9 +11,11 @@ app.set('port', port);
 const server = http.createServer(app);
 
 db.sequelize.sync().then((req) => {
-    server.listen(port, () => { console.log(`Server is running on port ${port}`); })
+    server.listen(port, () => {
+        setAlerts();
+        console.log(`Server is running on port ${port}`);
+    })
 });
-
 
 
 server.on('error', (error) => {

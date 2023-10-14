@@ -30,28 +30,13 @@ export class DashboardComponent {
       if (status != 'granted') {
         this.router.navigate(['/']);
       } else {
-        this.notificationService.requestToken().then((token) => {
-          console.log(token);
-
-        }).catch((err) => {
-          console.log(err)
-        })
+        this.notificationService.requestToken();
       }
     }).catch(() => {
       console.log("permission error");
     }
 
     );
-    // if (permission === "granted") {
-    //   const token = await getToken(messaging, {
-    //     vapidKey:
-    //       "BOtICGIpUyQatIBt93DteJijVBJub2UyMVdEVB7WSHmrju2qk1xRCQ36KGzdqtw4NpPANw3WCMGdsSjtsaJOFGg",
-    //   });
-    //   console.log("Token Gen", token);
-    //   // Send this token  to server ( db)
-    // } else if (permission === "denied") {
-    //   alert("You denied for the notification");
-    // }
     this.userSubscribedStocksService.getUserSubscribedStocks().then((response) => {
       this.stocks = response.data.subscribedStocks;
 
