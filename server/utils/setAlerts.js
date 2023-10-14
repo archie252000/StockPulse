@@ -1,4 +1,4 @@
-const cron = require('node-cron')
+const { CronJob } = require('cron')
 const axios = require('axios');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
@@ -51,8 +51,8 @@ function sendFCMMessage(message, userId) {
 
 const setAlerts = () => {
     console.log("called");
-    cron.schedule('0 */3 * * *', async() => {
-        console.log('Cron job started...');
+    const cron = new CronJob('0 */3 * * *', async() => {
+
 
         try {
             const uniqueSymbols = await UserSubscribedStocks.findAll({
@@ -102,11 +102,13 @@ const setAlerts = () => {
                 }
             }
 
-            console.log('Cron job completed.');
+
         } catch (error) {
             console.error('Error in cron job:', error);
         }
     });
+
+    cron.start();
 }
 
 module.exports = {
