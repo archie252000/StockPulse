@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models')
+
+const {
+    User,
+    UserNotificaionTokens
+} = require('../models')
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -30,6 +34,14 @@ const addUser = async(username, password) => {
 const checkUsername = async(username) => {
     return await User.findOne({
         where: { username }
+    })
+}
+
+
+const addNotificationToken = async(UserId, notificationToken) => {
+    await UserNotificaionTokens.create({
+        UserId,
+        notificationToken
     })
 }
 
@@ -83,7 +95,22 @@ const loginUser = async(req, res) => {
 
 }
 
+// Stores User's notification token
+
+const notificationToken = async(req, res) => {
+    const { notificationToken } = req.body;
+
+    try {
+        addNotificationToken(req.userId, notificationToken);
+        res.status(200).json({ message: "token successfully added" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
+    notificationToken
 };
