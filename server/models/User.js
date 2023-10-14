@@ -14,9 +14,6 @@ module.exports = (sequelize, DataTypes) => {
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
-            },
-            notifKey: {
-                type: DataTypes.STRING
             }
         }, {
             timestamps: false
@@ -25,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
     User.associate = (models) => {
         User.hasMany(models.UserSubscribedStocks);
+        User.hasMany(models.UserNotificationTokens);
     };
 
     return User;

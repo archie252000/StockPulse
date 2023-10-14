@@ -58,6 +58,7 @@
     font-weight: 600;
     color: #fff;
     background-color: var(--primary-red);
+    cursor: pointer;
 }
 
 .stock-modal-header-wrapper {

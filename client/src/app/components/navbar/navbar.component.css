@@ -121,10 +121,12 @@ li {
     border: none;
     font-weight: bold;
     width: 90px;
+    cursor: pointer;
 }
 
 .logout-responsive {
     display: none;
+    cursor: pointer;
 }
 
 .logout-responsive-spacer {

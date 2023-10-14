@@ -11,6 +11,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StockCardComponent } from './components/stock-card/stock-card.component';
 import { StockModalComponent } from './components/stock-modal/stock-modal.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { StockModalComponent } from './components/stock-modal/stock-modal.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideMessaging(() => getMessaging())
   ],
   providers: [],
   bootstrap: [AppComponent]

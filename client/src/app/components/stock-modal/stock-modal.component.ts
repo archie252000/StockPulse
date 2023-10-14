@@ -31,7 +31,7 @@ export class StockModalComponent {
 
   onSetAlert() {
     this.subscribeStockService.subscribeStock(this.symbol, this.targetPrice.nativeElement.value).then((response) => {
-      console.log(response);
+      window.location.reload();
 
     }).catch((err) => console.log(err.message));
   }

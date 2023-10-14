@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SearchService } from '../../services/search.service'
-import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'navbar',
@@ -17,7 +17,7 @@ export class NavbarComponent {
   selectedStockSymbol: String
   selectedStockCompany: String
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private router: Router) {
     this.searchResults = [];
     this.showOverlay = false;
     this.showResults = false;
@@ -75,6 +75,11 @@ export class NavbarComponent {
     this.showStockModal = false;
     this.showResults = true;
 
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/'])
   }
 
 }
